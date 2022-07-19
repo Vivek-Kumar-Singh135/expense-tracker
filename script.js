@@ -91,6 +91,30 @@ let updateBalance = (amt) => {
     }
 }
 
+let updateHistory = (amt, txt) => {
+    if (amt[0] == '-') {
+        let transact = document.createElement('li');
+        transact.setAttribute("class", "minus");
+        let div1 = document.createElement('div');
+        div1.innerText = txt;
+        let div2 = document.createElement('div');
+        div2.innerText = amt;
+        transact.appendChild(div1);
+        transact.appendChild(div2);
+        document.getElementById("list").appendChild(transact);
+    } else {
+        let transact = document.createElement('li');
+        transact.setAttribute("class", "plus");
+        let div1 = document.createElement('div');
+        div1.innerText = txt;
+        let div2 = document.createElement('div');
+        div2.innerText = "+" + amt;
+        transact.appendChild(div1);
+        transact.appendChild(div2);
+        document.getElementById("list").appendChild(transact);
+    }
+}
+
 let key = localStorage.length + 1;
 
 let storeData = () => {
@@ -108,4 +132,5 @@ let storeData = () => {
     key = localStorage.length + 1;
 
     updateBalance(amt);
+    updateHistory(amt, txt);
 }
